@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" HBNB Module"""
 import cmd
 from models.base_model import BaseModel
 from models import storage
