@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """model Base"""
+import models
 from uuid import uuid4
 from datetime import datetime
-import models
+
 
 
 class BaseModel:
@@ -23,6 +24,12 @@ class BaseModel:
             self.updated_at = datetime.now()
             models.storage.new(self)
 
+    def __str__(self):
+        """__str__ method string represntation of the instance
+        return
+        [str] instance  """
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+    
     def save(self):
         """save method to save instance information in json file"""
         self.updated_at = datetime.now()
@@ -32,13 +39,7 @@ class BaseModel:
         """to_dict method that return
         a dictionary containing all keys/values of __dict__ of the instance"""
         obj_formate = self.__dict__.copy()
-        obj_formate['__class__'] = type(self).__name__
+        obj_formate['__class__'] = self.__class__.__name__
         obj_formate['created_at'] = self.created_at.isoformat()
         obj_formate['updated_at'] = self.updated_at.isoformat()
         return obj_formate
-
-    def __str__(self):
-        """__str__ method string represntation of the instance
-        return
-        [str] instance  """
-        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
