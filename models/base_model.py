@@ -5,7 +5,6 @@ from uuid import uuid4
 from datetime import datetime
 
 
-
 class BaseModel:
     """class declaration"""
     def __init__(self, *args, **kwargs):
@@ -27,9 +26,9 @@ class BaseModel:
     def __str__(self):
         """__str__ method string represntation of the instance
         return
-        [str] instance  """
+        [str] instance """
         return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
-    
+
     def save(self):
         """save method to save instance information in json file"""
         self.updated_at = datetime.now()
