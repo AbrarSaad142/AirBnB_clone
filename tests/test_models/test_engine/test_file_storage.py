@@ -122,6 +122,11 @@ class TestFileStorage_methods(unittest.TestCase):
             save_text = f.read()
             self.assertIn("BaseModel." + bm.id, save_text)
             self.assertIn("User." + us.id, save_text)
+            self.assertIn("State." + st.id, save_text)
+            self.assertIn("Place." + pl.id, save_text)
+            self.assertIn("City." + cy.id, save_text)
+            self.assertIn("Amenity." + am.id, save_text)
+            self.assertIn("Review." + rv.id, save_text)
 
     def test_save_with_arg(self):
         with self.assertRaises(TypeError):
@@ -147,6 +152,11 @@ class TestFileStorage_methods(unittest.TestCase):
         objs = FileStorage._FileStorage__objects
         self.assertIn("BaseModel." + bm.id, objs)
         self.assertIn("User." + us.id, objs)
+        self.assertIn("State." + st.id, objs)
+        self.assertIn("Place." + pl.id, objs)
+        self.assertIn("City." + cy.id, objs)
+        self.assertIn("Amenity." + am.id, objs)
+        self.assertIn("Review." + rv.id, objs)
 
     def test_reload_with_arg(self):
         with self.assertRaises(TypeError):
