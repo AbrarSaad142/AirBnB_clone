@@ -30,11 +30,11 @@ class FileStorage():
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path)"""
-        odict = FileStorage.__objects
-        objectdict = {obj: odict[obj].to_dict()
-                      for obj in odict.keys()}
-        with open(FileStorage.__file_path, "w") as f:
-            json.dump(objectdict, f)
+        json_object = {}
+        for key in self.__objects:
+            json_object[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, 'w') as jsonFile:
+            json.dump(json_object, jsonFile)
 
     def reload(self):
         """ deserializes the JSON file to __objects (only if the JSON file
@@ -42,11 +42,9 @@ class FileStorage():
         If the file doesn’t exist,
         no exception should be raised)"""
         try:
-            with open(FileStorage.__file_path) as file:
-                objectdict = json.load(file)
-                for o in objectdict.values():
-                    name = o['__class__']
-                    del o['__class__']
-                    self.new(eval(name)(**o))
+            with open(self.__file_path, "r", encoding="utf-8") as jsonFile:
+                for key, value in json.load(jsonFile).items():
+                    attribute_value = eval(value['__class__'])(**value)
+                    self.__objects[key] = attribute_value
         except FileNotFoundError:
-            return
+            pass
