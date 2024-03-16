@@ -2,9 +2,11 @@
     background-color: white;
     height: 70px;
     width: 100%;
-    border: 1px;
+    border: 1px solid #DDDDDD;
     border-radius: 4px;
     position: relative;
+    justify-content: right;
+    align-items: center;
 }
 .filters button{
     font-size: 18px;
@@ -17,6 +19,9 @@
     align-content: center;
     right: 30px;
     position: absolute;
+    text-align: center;
+    right: 30PX;
+    top: 15%;
 }
 .filters button:hover{
     opacity: 90%;
