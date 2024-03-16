@@ -6,7 +6,7 @@ header {
     background-image: url("../images/logo.png");
     background-repeat: no-repeat;
 }
-.logo{
+header.logo{
     align-content: left;
     margin-left: 20px;
 
